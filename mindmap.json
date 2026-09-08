@@ -1,0 +1,145 @@
+{
+  "title": "Flappy Bat Game Development",
+  "nodes": [
+    {
+      "category": "Branding & Pre-production",
+      "done": false,
+      "items": [
+        {
+          "task": "Game Company Splash Screen",
+          "done": false,
+          "details": [
+            {
+              "detail": "Ahankara Games",
+              "done": true
+            },
+            "Create splash scene in Unity",
+            "Configure auto-transition to Main Menu"
+          ]
+        },
+        {
+          "task": "Git Repository Setup - using company name",
+          "done": true,
+          "details": [
+            {
+              "detail": "Add Unity-specific .gitignore",
+              "done": true
+            },
+            {
+              "detail": "Commit Assets, Packages, and ProjectSettings",
+              "done": true
+            },
+            {
+              "detail": "Exclude Library, Temp, Logs, and Build folders",
+              "done": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Core Gameplay & Mechanics",
+      "done": false,
+      "items": [
+        {
+          "task": "Player Setup & Animation",
+          "done": false,
+          "details": [
+            {
+              "detail": "Bat sprite/model integration",
+              "done": true
+            },
+            "Flapping animation states",
+            {
+              "detail": "Physics (Rigidbody2D & Colliders)",
+              "done": true
+            }
+          ]
+        },
+        {
+          "task": "Obstacle System (Cave Theme)",
+          "done": false,
+          "details": [
+            {
+              "detail": "Replace pipes with Stalactites & Stalagmites",
+              "done": true
+            },
+            {
+              "detail": "Pipe spawner script",
+              "done": true
+            },
+            {
+              "detail": "Movement and despawn logic",
+              "done": true
+            }
+          ]
+        },
+        {
+          "task": "Advanced Mode System",
+          "done": false,
+          "details": [
+            {
+              "detail": "Score tracker",
+              "done": true
+            },
+            "Dynamic opening logic (stalagmites open only after previous obstacle is cleared)",
+            "High Score after game end"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Audio & Sound Effects",
+      "done": false,
+      "items": [
+        {
+          "task": "Audio System",
+          "done": false,
+          "details": [
+            "Background Music (BGM)",
+            "Flap Sound (trigger on input press)",
+            "High Score Sound",
+            "Death / Game Over Sound"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Platform & Input (Android)",
+      "done": false,
+      "items": [
+        {
+          "task": "Multi-Platform Controls",
+          "done": false,
+          "details": [
+            "Map KeyPress (PC Spacebar) and Screen Tap (Touch Input) to Flap action"
+          ]
+        },
+        {
+          "task": "Android Build & Testing",
+          "done": false,
+          "details": [
+            "Switch platform to Android in Unity Build Settings",
+            "Configure Resolution & Presentation (Portrait mode)",
+            "Export APK / Test on physical device"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Polish & Juice",
+      "done": false,
+      "items": [
+        {
+          "task": "Visual & Audio Polish",
+          "done": false,
+          "details": [
+            "Screen shake on death",
+            "Particle effects (bat cave dust / flap feathers)",
+            "UI transitions (Main Menu, Game Over screen, Score popup)"
+          ]
+        }
+      ]
+    }
+  ]
+}
