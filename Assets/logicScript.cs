@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -8,6 +9,12 @@ public class logicScript : MonoBehaviour
     public Text playerScoreText;
     public GameObject gameoverPanel;
     public static bool isGameOver;
+    public int highScore;
+
+    private void Start()
+    {
+       highScore = PlayerPrefs.GetInt("highScore");
+    }
 
     void Awake()
     {

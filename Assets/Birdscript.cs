@@ -32,7 +32,12 @@ public class Birdscript : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            myRigidbody.linearVelocity = Vector2.up * flapStrength;    
+            myRigidbody.linearVelocity = Vector2.up * flapStrength;
+            // Inside your Jump / Flap function:
+            if (AudioManager.instance != null)
+            {
+                AudioManager.instance.playSFX(AudioManager.instance.flySound);
+            }
         }
         
     }
@@ -41,6 +46,10 @@ public class Birdscript : MonoBehaviour
     { 
         if ((logic != null) || (!batAlive))
         {
+            if (AudioManager.instance != null)
+            {
+                AudioManager.instance.playSFX(AudioManager.instance.deathSound);
+            }
             logic.gameOver();
         }
         else
