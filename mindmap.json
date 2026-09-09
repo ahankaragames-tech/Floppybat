@@ -83,7 +83,10 @@
               "done": true
             },
             "Dynamic opening logic (stalagmites open only after previous obstacle is cleared)",
-            "High Score after game end"
+            {
+              "detail": "High Score after game end",
+              "done": true
+            }
           ]
         }
       ]
@@ -96,10 +99,22 @@
           "task": "Audio System",
           "done": false,
           "details": [
-            "Background Music (BGM)",
-            "Flap Sound (trigger on input press)",
-            "High Score Sound",
-            "Death / Game Over Sound"
+            {
+              "detail": "Background Music (BGM)",
+              "done": true
+            },
+            {
+              "detail": "Flap Sound (trigger on input press)",
+              "done": true
+            },
+            {
+              "detail": "High Score Sound",
+              "done": true
+            },
+            {
+              "detail": "Death / Game Over Sound",
+              "done": true
+            }
           ]
         }
       ]
