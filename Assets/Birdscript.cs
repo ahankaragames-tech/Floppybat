@@ -51,12 +51,20 @@ public class Birdscript : MonoBehaviour
         
         batAlive = false;
         
+        // 1. Play immediate physical impact sound upon collision
         if (AudioManager.instance != null)
         {
             AudioManager.instance.playSFX(AudioManager.instance.deathSound);
         }
+
+        // 2. Wait 0.5 seconds for death sound to finish before opening Game Over UI
+        StartCoroutine(DelayedGameOver());
         
-        if ((logic != null))
+    }
+    private System.Collections.IEnumerator DelayedGameOver()
+    {
+        yield return new WaitForSeconds(0.5f);
+        if (logic != null)
         {
             logic.gameOver();
         }

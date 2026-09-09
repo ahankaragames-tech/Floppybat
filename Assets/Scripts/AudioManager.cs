@@ -35,12 +35,24 @@ public class AudioManager : MonoBehaviour
 
     public void PlayBGM(AudioClip clip)
     {
-        if (clip != null && musicSource != null)
+        if (musicSource == null)
         {
-            musicSource.clip = clip;
-            musicSource.loop = true;
-            musicSource.Play();
+            Debug.LogError("[AudioManager] musicSource AudioSource component is NOT assigned in Inspector!");
+            return;
         }
+
+        if (clip == null)
+        {
+            Debug.LogError("[AudioManager] The AudioClip passed to PlayBGM is null!");
+            return;
+        }
+
+        // If this exact clip is already playing, don't restart it
+        if (musicSource.clip == clip && musicSource.isPlaying) return;
+
+        musicSource.clip = clip;
+        musicSource.loop = true;
+        musicSource.Play();
     }
 
     public void playSFX(AudioClip clip)

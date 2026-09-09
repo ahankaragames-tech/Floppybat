@@ -8,15 +8,22 @@ public class logicScript : MonoBehaviour
     public int playerScore;
     public Text playerScoreText;
     public Text gameoverText;
+    public Text highScoreText;
     public GameObject gameoverPanel;
     public static bool isGameOver;
     public int highScore;
     public stalagSpawner spawner;
+    private const string HIGH_SCORE_KEY = "HighScore";
 
     private void Start()
     {
         // Load the saved high score ONCE on start using consistent key "HighScore"
-        highScore = PlayerPrefs.GetInt("HighScore", 0);
+        highScore = PlayerPrefs.GetInt(HIGH_SCORE_KEY, 0);
+        
+        if (AudioManager.instance != null && AudioManager.instance.bgmSound != null)
+        {
+            AudioManager.instance.PlayBGM(AudioManager.instance.bgmSound);
+        }
     }
 
     void Awake()
@@ -39,27 +46,37 @@ public class logicScript : MonoBehaviour
 
     public void gameOver()
     {
+        if (isGameOver) return;
+    
+        isGameOver = true;
+
         if (spawner != null)
         {
             spawner.isSpawning = false;
         }
-        isGameOver = true;
+    
+        if (AudioManager.instance != null && AudioManager.instance.musicSource != null)
+        {
+            AudioManager.instance.musicSource.Stop();
+        }
     
         Debug.Log($"[GameOver Check] Player Score: {playerScore} | Stored High Score: {highScore}");
-        
-        // 2. Evaluate score and update UI text BEFORE turning on the panel
-        if (playerScore >= highScore)
-        {
-            // Save to disk AND update local variable
-            PlayerPrefs.SetInt("highScore", playerScore);
-            PlayerPrefs.Save();
-            highScore = playerScore;
-
-            if (gameoverText != null)
-            {
-                gameoverText.text = "High score : " + playerScore + " !";
-            }
     
+        if (playerScore > highScore)
+        {
+            // Save new high score
+            highScore = playerScore;
+            PlayerPrefs.SetInt(HIGH_SCORE_KEY, playerScore);
+            PlayerPrefs.Save();
+
+            // Display centered header + high score subtext in one text component
+            if (gameoverText != null) 
+            {
+                gameoverText.gameObject.SetActive(true);
+                gameoverText.alignment = TextAnchor.MiddleCenter;
+                gameoverText.text = "Congratulations!\nHigh Score: " + highScore + "!";
+            }
+
             if (AudioManager.instance != null)
             {
                 AudioManager.instance.playSFX(AudioManager.instance.highScoreSound);
@@ -67,9 +84,12 @@ public class logicScript : MonoBehaviour
         }
         else
         {
-            if (gameoverText != null)
+            // Display centered game over header + best score subtext in one text component
+            if (gameoverText != null) 
             {
-                gameoverText.text = "Game Over";
+                gameoverText.gameObject.SetActive(true);
+                gameoverText.alignment = TextAnchor.MiddleCenter;
+                gameoverText.text = "Game Over\nBest Score: " + highScore;
             }
 
             if (AudioManager.instance != null)
@@ -78,7 +98,6 @@ public class logicScript : MonoBehaviour
             }
         }
 
-        // 3. NOW enable the panel with the correct text already populated
         gameoverPanel.SetActive(true);
     }
 }
