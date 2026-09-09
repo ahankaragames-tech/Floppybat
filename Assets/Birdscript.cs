@@ -16,9 +16,11 @@ public class Birdscript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!batAlive) return;
-
-        else
+        if (!batAlive)
+        {
+            return;
+        }
+        else 
         {
             Vector3 viewPos = Camera.main.WorldToViewportPoint(transform.position);
 
@@ -27,6 +29,7 @@ public class Birdscript : MonoBehaviour
             if (viewPos.y > 1.0f || viewPos.y < 0.0f)
             {
                 logic.gameOver();
+                batAlive = false;
             }
         }
         
@@ -44,6 +47,10 @@ public class Birdscript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     { 
+        if (!batAlive) return;
+        
+        batAlive = false;
+        
         if ((logic != null) || (!batAlive))
         {
             if (AudioManager.instance != null)
@@ -56,6 +63,6 @@ public class Birdscript : MonoBehaviour
         {
             Debug.LogError("Logic reference is missing on the bird script!");
         }
-        batAlive = false;
+     
     }
 }
