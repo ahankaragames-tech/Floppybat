@@ -6,6 +6,8 @@ public class stalagSpawner : MonoBehaviour
     public float spawnRate;
     private float timer = 0;
     public float stalagOffset;
+    
+    public bool isSpawning = true;
 
     private void Start()
     {
@@ -15,6 +17,8 @@ public class stalagSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!isSpawning) return;
+        
         if (timer < spawnRate)
         {
             timer = timer + Time.deltaTime;

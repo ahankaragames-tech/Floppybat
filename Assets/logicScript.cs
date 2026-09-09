@@ -10,6 +10,7 @@ public class logicScript : MonoBehaviour
     public GameObject gameoverPanel;
     public static bool isGameOver;
     public int highScore;
+    public stalagSpawner spawner;
 
     private void Start()
     {
@@ -36,6 +37,28 @@ public class logicScript : MonoBehaviour
     public void gameOver()
     {
         isGameOver = true;
+        if (spawner != null)
+        {
+            spawner.isSpawning = false;
+        }
+        
+        int currentHighScore = PlayerPrefs.GetInt("highScore");
+        if (playerScore > currentHighScore)
+        {
+            PlayerPrefs.SetInt("highScore", playerScore);
+            PlayerPrefs.Save();
+            if (AudioManager.instance != null)
+            {
+                AudioManager.instance.playSFX(AudioManager.instance.highScoreSound);
+            }
+        }
+        else
+        {
+            if (AudioManager.instance != null)
+            {
+                AudioManager.instance.playSFX(AudioManager.instance.gameoverSound);
+            }
+        }
         gameoverPanel.SetActive(true);
     }
 }
