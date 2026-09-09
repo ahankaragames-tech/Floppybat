@@ -7,6 +7,7 @@ public class logicScript : MonoBehaviour
 {
     public int playerScore;
     public Text playerScoreText;
+    public Text gameoverText;
     public GameObject gameoverPanel;
     public static bool isGameOver;
     public int highScore;
@@ -14,23 +15,25 @@ public class logicScript : MonoBehaviour
 
     private void Start()
     {
-       highScore = PlayerPrefs.GetInt("highScore");
+        // Load the saved high score ONCE on start using consistent key "HighScore"
+        highScore = PlayerPrefs.GetInt("HighScore", 0);
     }
 
     void Awake()
     {
         // Reset static flags as soon as the scene loads
         isGameOver = false; 
+        // testing variable PlayerPrefs.DeleteAll();
     }
     public void addScore()
     {
-        playerScore = playerScore+ 1;
+        if (isGameOver) return;
+        playerScore++;
         playerScoreText.text = playerScore.ToString();
     }
 
     public void restartGame()
     {
-        isGameOver = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -41,15 +44,22 @@ public class logicScript : MonoBehaviour
             spawner.isSpawning = false;
         }
         isGameOver = true;
+    
+        Debug.Log($"[GameOver Check] Player Score: {playerScore} | Stored High Score: {highScore}");
         
-        gameoverPanel.SetActive(true);
-        // 1. Get the previous record from disk
-        int savedHighScore = PlayerPrefs.GetInt("HighScore", 0);
-
-        if (playerScore > savedHighScore)
+        // 2. Evaluate score and update UI text BEFORE turning on the panel
+        if (playerScore >= highScore)
         {
+            // Save to disk AND update local variable
             PlayerPrefs.SetInt("highScore", playerScore);
             PlayerPrefs.Save();
+            highScore = playerScore;
+
+            if (gameoverText != null)
+            {
+                gameoverText.text = "High score : " + playerScore + " !";
+            }
+    
             if (AudioManager.instance != null)
             {
                 AudioManager.instance.playSFX(AudioManager.instance.highScoreSound);
@@ -57,11 +67,18 @@ public class logicScript : MonoBehaviour
         }
         else
         {
+            if (gameoverText != null)
+            {
+                gameoverText.text = "Game Over";
+            }
+
             if (AudioManager.instance != null)
             {
                 AudioManager.instance.playSFX(AudioManager.instance.gameoverSound);
             }
         }
-        
+
+        // 3. NOW enable the panel with the correct text already populated
+        gameoverPanel.SetActive(true);
     }
 }
