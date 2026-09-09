@@ -51,18 +51,14 @@ public class Birdscript : MonoBehaviour
         
         batAlive = false;
         
-        if ((logic != null) || (!batAlive))
+        if (AudioManager.instance != null)
         {
-            if (AudioManager.instance != null)
-            {
-                AudioManager.instance.playSFX(AudioManager.instance.deathSound);
-            }
+            AudioManager.instance.playSFX(AudioManager.instance.deathSound);
+        }
+        
+        if ((logic != null))
+        {
             logic.gameOver();
         }
-        else
-        {
-            Debug.LogError("Logic reference is missing on the bird script!");
-        }
-     
     }
 }

@@ -36,14 +36,17 @@ public class logicScript : MonoBehaviour
 
     public void gameOver()
     {
-        isGameOver = true;
         if (spawner != null)
         {
             spawner.isSpawning = false;
         }
+        isGameOver = true;
         
-        int currentHighScore = PlayerPrefs.GetInt("highScore");
-        if (playerScore > currentHighScore)
+        gameoverPanel.SetActive(true);
+        // 1. Get the previous record from disk
+        int savedHighScore = PlayerPrefs.GetInt("HighScore", 0);
+
+        if (playerScore > savedHighScore)
         {
             PlayerPrefs.SetInt("highScore", playerScore);
             PlayerPrefs.Save();
@@ -59,6 +62,6 @@ public class logicScript : MonoBehaviour
                 AudioManager.instance.playSFX(AudioManager.instance.gameoverSound);
             }
         }
-        gameoverPanel.SetActive(true);
+        
     }
 }
