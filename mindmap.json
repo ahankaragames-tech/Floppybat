@@ -49,7 +49,10 @@
               "detail": "Bat sprite/model integration",
               "done": true
             },
-            "Flapping animation states",
+            {
+              "detail": "Flapping animation states",
+              "done": true
+            },
             {
               "detail": "Physics (Rigidbody2D & Colliders)",
               "done": true

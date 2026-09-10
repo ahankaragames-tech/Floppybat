@@ -7,10 +7,16 @@ public class Birdscript : MonoBehaviour
     public float flapStrength;
     public logicScript logic;
     public static bool batAlive = true;
+    
+    public Animator animator;
 
     void Start()
     {
         batAlive = true;
+        if (animator == null)
+        {
+            animator = GetComponent<Animator>();
+        }
     }
     
     // Update is called once per frame
@@ -36,7 +42,12 @@ public class Birdscript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             myRigidbody.linearVelocity = Vector2.up * flapStrength;
-            // Inside your Jump / Flap function:
+            
+            if (animator != null)
+            {
+                animator.SetTrigger("Flap");
+            }
+            
             if (AudioManager.instance != null)
             {
                 AudioManager.instance.playSFX(AudioManager.instance.flySound);

@@ -111,3 +111,6 @@ InitTestScene*.unity*
 .idea/
 *.csproj
 *.sln
+
+# Local tooling
+.ai/

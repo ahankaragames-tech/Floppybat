@@ -30,7 +30,7 @@ public class logicScript : MonoBehaviour
     {
         // Reset static flags as soon as the scene loads
         isGameOver = false; 
-        // testing variable PlayerPrefs.DeleteAll();
+        PlayerPrefs.DeleteAll();
     }
     public void addScore()
     {

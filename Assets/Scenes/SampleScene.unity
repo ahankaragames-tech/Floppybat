@@ -438,6 +438,7 @@ MonoBehaviour:
   stalagPrefab: {fileID: 5773909614718193531, guid: 660b15139dce1eb4c81b6d5ef6271c6e, type: 3}
   spawnRate: 0.9
   stalagOffset: 1.5
+  isSpawning: 1
 --- !u!4 &343939735
 Transform:
   m_ObjectHideFlags: 0
@@ -929,6 +930,7 @@ GameObject:
   - component: {fileID: 1023764800}
   - component: {fileID: 1023764801}
   - component: {fileID: 1023764802}
+  - component: {fileID: 1023764803}
   m_Layer: 3
   m_Name: Bird
   m_TagString: Untagged
@@ -1053,6 +1055,7 @@ MonoBehaviour:
   myRigidbody: {fileID: 1023764800}
   flapStrength: 4
   logic: {fileID: 1080582679}
+  animator: {fileID: 0}
 --- !u!61 &1023764802
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1099,6 +1102,28 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.48, y: 0.29}
   m_EdgeRadius: 0
+--- !u!95 &1023764803
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023764797}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f0feb0304c91ea44e866627e152a4379, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1080582678
 GameObject:
   m_ObjectHideFlags: 0
@@ -1130,7 +1155,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   playerScore: 0
   playerScoreText: {fileID: 186324470}
+  gameoverText: {fileID: 0}
+  highScoreText: {fileID: 0}
   gameoverPanel: {fileID: 1597893215}
+  highScore: 0
+  spawner: {fileID: 0}
 --- !u!4 &1080582680
 Transform:
   m_ObjectHideFlags: 0
