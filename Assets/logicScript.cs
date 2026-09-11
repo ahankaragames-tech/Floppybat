@@ -30,7 +30,7 @@ public class logicScript : MonoBehaviour
     {
         // Reset static flags as soon as the scene loads
         isGameOver = false; 
-        //PlayerPrefs.DeleteAll();
+       // PlayerPrefs.DeleteAll();
     }
     public void addScore()
     {
@@ -73,6 +73,8 @@ public class logicScript : MonoBehaviour
             if (gameoverText != null) 
             {
                 gameoverText.gameObject.SetActive(true);
+                gameoverText.verticalOverflow = VerticalWrapMode.Overflow;
+                gameoverText.horizontalOverflow = HorizontalWrapMode.Overflow;
                 gameoverText.alignment = TextAnchor.MiddleCenter;
                 gameoverText.text = "Congratulations!\nHigh Score: " + highScore + "!";
             }
@@ -88,6 +90,8 @@ public class logicScript : MonoBehaviour
             if (gameoverText != null) 
             {
                 gameoverText.gameObject.SetActive(true);
+                gameoverText.verticalOverflow = VerticalWrapMode.Overflow;
+                gameoverText.horizontalOverflow = HorizontalWrapMode.Overflow;
                 gameoverText.alignment = TextAnchor.MiddleCenter;
                 gameoverText.text = "Game Over\nBest Score: " + highScore;
             }
