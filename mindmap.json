@@ -10,11 +10,17 @@
           "done": false,
           "details": [
             {
-              "detail": "Ahankara Games",
+              "detail": "Ghrelin Interactive",
               "done": true
             },
-            "Create splash scene in Unity",
-            "Configure auto-transition to Main Menu"
+            {
+              "detail": "Create splash scene in Unity",
+              "done": true
+            },
+            {
+              "detail": "Configure auto-transition to Main Menu",
+              "done": true
+            }
           ]
         },
         {
