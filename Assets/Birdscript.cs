@@ -39,7 +39,7 @@ public class Birdscript : MonoBehaviour
             }
         }
         
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
         {
             myRigidbody.linearVelocity = Vector2.up * flapStrength;
             

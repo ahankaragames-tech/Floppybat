@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class logicScript : MonoBehaviour
 {
@@ -15,6 +16,13 @@ public class logicScript : MonoBehaviour
     public stalagSpawner spawner;
     private const string HIGH_SCORE_KEY = "HighScore";
 
+    void Awake()
+    {
+        // Reset static flags as soon as the scene loads
+        isGameOver = false; 
+        // PlayerPrefs.DeleteAll();
+    }
+
     private void Start()
     {
         // Load the saved high score ONCE on start using consistent key "HighScore"
@@ -25,13 +33,36 @@ public class logicScript : MonoBehaviour
             AudioManager.instance.PlayBGM(AudioManager.instance.bgmSound);
         }
     }
-
-    void Awake()
+    
+    void Update()
     {
-        // Reset static flags as soon as the scene loads
-        isGameOver = false; 
-       // PlayerPrefs.DeleteAll();
+        // Check if player tapped/clicked, BUT ignore if tapping on UI buttons
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (IsPointerOverUI())
+            {
+                return; // Exit early so jump/tap code doesn't block UI button touches!
+            }
+
+            // Put any global screen tap logic here if needed
+        }
     }
+
+    // Mobile-friendly UI raycast check for Android & PC Editor
+    private bool IsPointerOverUI()
+    {
+        if (EventSystem.current == null) return false;
+
+        // Check finger touch ID on mobile devices
+        if (Input.touchCount > 0)
+        {
+            return EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId);
+        }
+
+        // Check mouse position on PC Editor / Standalone
+        return EventSystem.current.IsPointerOverGameObject();
+    }
+
     public void addScore()
     {
         if (isGameOver) return;
@@ -102,6 +133,9 @@ public class logicScript : MonoBehaviour
             }
         }
 
-        gameoverPanel.SetActive(true);
+        if (gameoverPanel != null)
+        {
+            gameoverPanel.SetActive(true);
+        }
     }
 }
