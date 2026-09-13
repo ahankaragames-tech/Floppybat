@@ -13,14 +13,18 @@ public class logicScript : MonoBehaviour
     public GameObject gameoverPanel;
     public static bool isGameOver;
     public int highScore;
-    public stalagSpawner spawner;
     private const string HIGH_SCORE_KEY = "HighScore";
 
+    // Mutation tracking
+    public static bool isMutationActive;
+    public int mutationThreshold = 10;
+    
     void Awake()
     {
         // Reset static flags as soon as the scene loads
-        isGameOver = false; 
-        // PlayerPrefs.DeleteAll();
+        isGameOver = false;
+        isMutationActive = false;
+        //PlayerPrefs.DeleteAll();
     }
 
     private void Start()
@@ -72,6 +76,31 @@ public class logicScript : MonoBehaviour
         if (isGameOver) return;
         playerScore++;
         playerScoreText.text = playerScore.ToString();
+        
+        // 1. Check if we reached score 10
+        if (playerScore >= mutationThreshold && !isMutationActive)
+        {
+            isMutationActive = true;
+            Debug.Log("Mutation Triggered: Dynamic Openings Activated!");
+        }
+
+        // 2. If mutation is active, trigger the next obstacle to open
+        if (isMutationActive)
+        {
+            NotifyNextObstacleToOpen();
+        }
+    }
+    
+    private void NotifyNextObstacleToOpen()
+    {
+        // Find all active stalagmites currently in the scene
+        StalagObstacle[] activeObstacles = FindObjectsOfType<StalagObstacle>();
+    
+        // Loop through each one and call its OpenGap method
+        foreach (StalagObstacle obstacle in activeObstacles)
+        {
+            obstacle.OpenGap();
+        }
     }
 
     public void restartGame()
@@ -84,12 +113,7 @@ public class logicScript : MonoBehaviour
         if (isGameOver) return;
     
         isGameOver = true;
-        
-        if (spawner != null)
-        {
-            spawner.isSpawning = false;
-        }
-    
+     
         if (AudioManager.instance != null && AudioManager.instance.musicSource != null)
         {
             AudioManager.instance.musicSource.Stop();

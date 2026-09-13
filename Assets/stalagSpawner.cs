@@ -6,18 +6,19 @@ public class stalagSpawner : MonoBehaviour
     public float spawnRate;
     private float timer = 0;
     public float stalagOffset;
-    
-    public bool isSpawning = true;
 
     private void Start()
     {
-        spawnStalag();
+        if (!logicScript.isGameOver)
+        {
+            spawnStalag();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!isSpawning) return;
+        if (logicScript.isGameOver) return;
         
         if (timer < spawnRate)
         {

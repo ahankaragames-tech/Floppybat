@@ -91,7 +91,10 @@
               "detail": "Score tracker",
               "done": true
             },
-            "Dynamic opening logic (stalagmites open only after previous obstacle is cleared)",
+            {
+              "detail": "Dynamic opening logic (stalagmites open only after previous obstacle is cleared)",
+              "done": true
+            },
             {
               "detail": "High Score after game end",
               "done": true
