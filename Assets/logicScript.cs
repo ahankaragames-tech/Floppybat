@@ -43,8 +43,12 @@ public class logicScript : MonoBehaviour
             {
                 return; // Exit early so jump/tap code doesn't block UI button touches!
             }
-
             // Put any global screen tap logic here if needed
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            // Optional: Pause audio or save score here
+            Application.Quit();
         }
     }
 
@@ -80,7 +84,7 @@ public class logicScript : MonoBehaviour
         if (isGameOver) return;
     
         isGameOver = true;
-
+        
         if (spawner != null)
         {
             spawner.isSpawning = false;

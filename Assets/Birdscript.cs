@@ -7,6 +7,7 @@ public class Birdscript : MonoBehaviour
     public float flapStrength;
     public logicScript logic;
     public static bool batAlive = true;
+    public screen_shake screenShake;
     
     public Animator animator;
 
@@ -61,6 +62,12 @@ public class Birdscript : MonoBehaviour
         if (!batAlive) return;
         
         batAlive = false;
+        
+        
+        if (screenShake != null)
+        {
+            screenShake.TriggerShake();
+        }
         
         // 1. Play immediate physical impact sound upon collision
         if (AudioManager.instance != null)

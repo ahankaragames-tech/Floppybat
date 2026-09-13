@@ -136,16 +136,29 @@
           "task": "Multi-Platform Controls",
           "done": false,
           "details": [
-            "Map KeyPress (PC Spacebar) and Screen Tap (Touch Input) to Flap action"
+            {
+              "detail": "Map KeyPress (PC Spacebar) and Screen Tap (Touch Input) to Flap action",
+              "done": true
+            }
           ]
         },
         {
           "task": "Android Build & Testing",
           "done": false,
           "details": [
-            "Switch platform to Android in Unity Build Settings",
-            "Configure Resolution & Presentation (Portrait mode)",
-            "Export APK / Test on physical device"
+            {
+              "detail": "Switch platform to Android in Unity Build Settings",
+              "done": true
+            },
+            {
+              "detail": "Configure Resolution & Presentation (Landscape mode)",
+              "done": true
+            },
+            {
+              "detail": "Export APK / Test on physical device",
+              "done": true
+            },
+            "Bugs"
           ]
         }
       ]
@@ -158,9 +171,14 @@
           "task": "Visual & Audio Polish",
           "done": false,
           "details": [
-            "Screen shake on death",
-            "Particle effects (bat cave dust / flap feathers)",
-            "UI transitions (Main Menu, Game Over screen, Score popup)"
+            {
+              "detail": "Screen shake on death",
+              "done": true
+            },
+            {
+              "detail": "UI transitions (Main Menu, Game Over screen, Score popup)",
+              "done": true
+            }
           ]
         }
       ]

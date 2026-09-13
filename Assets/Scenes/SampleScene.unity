@@ -361,6 +361,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -486,6 +487,97 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46ec354c88484224e9e7d55b374bfd28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  duration: 0.5
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.059628546
+      value: 0.2077364
+      inSlope: 0.014421496
+      outSlope: 0.014421496
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.29671046
+      value: 0.074358374
+      inSlope: 0.066270344
+      outSlope: 0.066270344
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.33226305
+      value: 0.17862129
+      inSlope: 1.2979128
+      outSlope: 1.2979128
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.50992906
+      value: 0.10735673
+      inSlope: 1.5937393
+      outSlope: 1.5937393
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.62725043
+      value: 0.24206561
+      inSlope: -0.96783787
+      outSlope: -0.96783787
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.8503132
+      value: 0.12528032
+      inSlope: 1.5600574
+      outSlope: 1.5600574
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1.0031128
+      value: 0.013355255
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &705222535
 GameObject:
   m_ObjectHideFlags: 0
@@ -950,6 +1042,7 @@ MonoBehaviour:
   myRigidbody: {fileID: 1023764800}
   flapStrength: 4
   logic: {fileID: 1080582679}
+  screenShake: {fileID: 519420033}
   animator: {fileID: 0}
 --- !u!61 &1023764802
 BoxCollider2D:
